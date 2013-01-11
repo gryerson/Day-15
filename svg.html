@@ -8,67 +8,11 @@
    <link rel="stylesheet" href="css/main.css" />
    <link rel="stylesheet" href="css/nav.css" />
    <style>
-      canvas	{
+      svg	{
          border: 1px solid black;
          background: url('images/ninja_dodgeball.jpg') center top no-repeat;
       }
    </style>
-   <script>
-      //Declare Variables
-      var ctx;
-      var canvasWidth = 600;
-      var canvasHeight = 450; 
-      var circle_x = 300;
-      var circle_y = 225;
-      var speed_dx = 2;
-      var speed_dy = 4;
-
-      //Access rendering context
-      function init() {
-  	     ctx = document.getElementById("canvas").getContext("2d");
-  	     setInterval(draw, 10);
-      }// end initiate function
-
-      //Execute drawing function
-      function draw() {
-	     //clear canvas
-	     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-
-	     //draw image
-	     
-	     // declare variable for image function
-	     var img = new Image(); 
-	     
-	     // specify path of the image	
-	     img.src = 'images/homer_dodgeball1.png'; 
-	     
-	     // draw image at specified location
-	     ctx.drawImage(img,172,197);
-
-         //draw shape
-	     ctx.beginPath();
-	
-	     // create a circle with a radius of 20 pixels
-         ctx.arc(circle_x, circle_y, 20, 0, Math.PI*2, true); 
-	     ctx.fillStyle = "rgb(255,0,0)"
-	     ctx.fill();	
-
-         // move shape
-         if (circle_x + speed_dx > canvasWidth || circle_x + speed_dx < 0)
-    	    speed_dx = -speed_dx;
-
-    	 if (circle_y + speed_dy > canvasHeight || circle_y + speed_dy < 0)
-    	    speed_dy = -speed_dy;
-    	 	circle_x += speed_dx;
-    	  	circle_y += speed_dy;
-      }// end drawing function
-
-      // add onload event handler
-      window.onload = function() {
-         init();
-      }
-	
-</script>
    
 </head>
 
@@ -131,13 +75,28 @@
       </header>
 
       <!-- Content Starts Here -->
-      <h2> Homer at Ninja Dodgeball Fest I in Canvas</h2>
+      <h2> Homer at Ninja Dodgeball Fest II in SVG</h2>
 
-      <canvas id="canvas" width="600" height="450"></canvas>
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="450" viewBox="0 0 600 450">
+         <!-- Drawing elements goes here -->
+         <image xlink:href='images/homer_dodgeball2.png' width="167" height="300">
+            <animateMotion 
+               path="M 110,200 C 300,130 400,350 450,150 500,-50 -90,270 110,200 Z" 
+               dur="5s" repeatCount="indefinite" rotate="auto" />
+         </image>
+         <circle cx="50%" cy="20" r="5%" fill="red">
+           <animate attributeName="cx" dur="3" values="5%;95%;5%" repeatCount="indefinite" />
+    
+           <animate attributeName="cy" dur="2s" values="5%;95%;5%" keyTimes="0;0.5; 1"
+              calcMode="spline" 
+              keySplines="1 0 0 1; 0 0 1 1" 
+              repeatCount="indefinite" />
+         </circle>
 
+         <image xlink:href='images/playing_homer.png' width="167" height="300">
+         
+      </svg>
       <!-- Content End Here -->
-
-
    </section>
 
    <footer>
